@@ -1,0 +1,13 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  // "extends": ["eslint:recommended", "standard"],
+  "extends": "airbnb",
+  "rules": {
+    "no-console": [2, {"allow": ["log", "warn", "error"]}],
+    "semi": ["error", "always"],
+    "no-extra-semi": 2
+  }
+}

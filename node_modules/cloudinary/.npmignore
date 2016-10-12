@@ -1,0 +1,8 @@
+.project
+src/
+samples/
+test/
+.idea
+.DS_Store
+.env
+.travis.yml

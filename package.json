@@ -1,0 +1,52 @@
+{
+  "name": "ecommerce-api",
+  "version": "1.0.0",
+  "description": "E-Commerce Backend API",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js ; exit 0",
+    "test": "mocha",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "Node.js",
+    "Express"
+  ],
+  "author": "Yuichi Hagio <yhagio87@gmail.com> (http://github.com/yhagio)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "mocha": "^3.1.1",
+    "nodemon": "^1.11.0",
+    "sinon": "^1.17.6",
+    "supertest": "^2.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "cloudinary": "^1.4.3",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
+    "helmet": "^2.3.0",
+    "jsonwebtoken": "^7.1.9",
+    "mailgun-js": "^0.7.12",
+    "mime": "^1.3.4",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "request": "^2.75.0",
+    "sequelize": "^3.24.3",
+    "stripe": "^4.11.0"
+  }
+}
