@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "hagio",
+    "password": "password",
+    "database": "postpg",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "hagio",
+    "password": "password",
+    "database": "postpg-test",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": ""
+  }
+}

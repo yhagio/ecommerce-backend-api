@@ -7,7 +7,7 @@
   "extends": "airbnb",
   "rules": {
     "no-console": [2, {"allow": ["log", "warn", "error"]}],
-    "semi": ["error", "always"],
-    "no-extra-semi": 2
+    // "semi": ["error", "always"],
+    // "no-extra-semi": 2
   }
 }

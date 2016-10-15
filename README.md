@@ -11,7 +11,7 @@ npm run start
 
 ```
 psql -l
-psql -d postpg -c "SELECT * FROM todos"
+psql -d postpg -c "SELECT * FROM products"
 ```
 
 | APIs | REST | 
