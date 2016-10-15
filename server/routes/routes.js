@@ -2,18 +2,10 @@ const Router = require('express').Router();
 const Product = require('../models').products;
 // const User = require('../database').User;
 // const Review = require('../database').Review;
+const productsController = require('../controllers/products');
 
 Router.route('/api/products')
-  .get((req, res) => {
-    console.log('GET PRODUCTS');
-
-    Product.findAll()
-    .then(products => res.json(products))
-    .catch((err) => {
-      console.log('Products err!', err);
-      return res.json({ error: err.message });
-    });
-  });
+  .get(productsController.getAllProducts);
 
 Router.route('/api/admin/products')
   .post((req, res) => {
