@@ -18,21 +18,21 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  sequelize.sync().then(() => {
-    Product.findAndCountAll()
-      .then((result) => {
-        console.log('RESULT COUNT: ', result.count);
-        if (!result || result.count === 0) {
-          Product.create({
-            name: 'Smaple Course',
-            description: 'Sample Description',
-            price: 12.5,
-          });
-        }
-      });
-  }).catch((e) => {
-    console.log('ERROR SYNCING WITH DB: ', e);
-  });
+  // sequelize.sync().then(() => {
+  //   Product.findAndCountAll()
+  //     .then((result) => {
+  //       console.log('RESULT COUNT: ', result.count);
+  //       if (!result || result.count === 0) {
+  //         Product.create({
+  //           name: 'Smaple Course',
+  //           description: 'Sample Description',
+  //           price: 12.5,
+  //         });
+  //       }
+  //     });
+  // }).catch((e) => {
+  //   console.log('ERROR SYNCING WITH DB: ', e);
+  // });
 
   return Product;
 };

@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for server/auth/auth.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">server/auth/</a> auth.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
+const bcrypt = require('bcrypt');
+&nbsp;
+const config = require('../config/config');
+const checkToken = expressJwt({ secret: config.secrets.jwt });
+const User = require('../models').users;
+&nbsp;
+// Decode user's token
+exports.decodeToken = () =&gt; {
+  return (req, res, next) =&gt; {
+    // [OPTIONAL]
+    // make it optional to place token on query string
+    // if it is, place it on the headers where it should be
+    // so checkToken can see it. See follow the 'Bearer 034930493' format
+    // so checkToken can see it and decode it
+<span class="cstat-no" title="statement not covered" >    if (req.query &amp;&amp; req.query.hasOwnProperty('access_token')) {</span>
+<span class="cstat-no" title="statement not covered" >      req.headers.authorization = 'Bearer ' + req.query.access_token;</span>
+    }
+    // this will call next if token is valid
+    // and send error if it is not. It will attached
+    // the decoded token to req.user
+<span class="cstat-no" title="statement not covered" >    checkToken(req, res, next);</span>
+  };
+};
+&nbsp;
+exports.getFreshUser = () =&gt; {
+<span class="cstat-no" title="statement not covered" >  return (req, res, next) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    User.findById(req.user.id)</span>
+      .then((user) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (!user) {</span>
+          // if no user is found it was not
+          // it was a valid JWT but didn't decode
+          // to a real user in our DB. Either the user was deleted
+          // since the client got the JWT, or
+          // it was a JWT from some other source
+<span class="cstat-no" title="statement not covered" >          res.status(401).send('Unauthorized');</span>
+        } else {
+          // update req.user with fresh user from
+          // stale token data
+<span class="cstat-no" title="statement not covered" >          req.user = user;</span>
+          // console.log('FOUND IT!', user);
+<span class="cstat-no" title="statement not covered" >          next();</span>
+        }
+      })
+      .catch((err) =&gt; {
+<span class="cstat-no" title="statement not covered" >        next(err);</span>
+      });
+  };
+};
+&nbsp;
+// Authenticate the user
+exports.verifyUser = () =&gt; {
+  return (req, res, next) =&gt; {
+<span class="cstat-no" title="statement not covered" >    const email = req.body.email;</span>
+<span class="cstat-no" title="statement not covered" >    const password = req.body.password;</span>
+&nbsp;
+    // if no email or password then send
+<span class="cstat-no" title="statement not covered" >    if (!email || !password) {</span>
+<span class="cstat-no" title="statement not covered" >      res.status(400).send({ error: 'You need a email and password' });</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    // look user up in the DB so we can check
+    // if the passwords match for the email
+<span class="cstat-no" title="statement not covered" >    User.findAll({</span>
+      where: {
+        email,
+      },
+    })
+    .then((user) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('Finding User:', user);</span>
+<span class="cstat-no" title="statement not covered" >      if (!user[0]) {</span>
+<span class="cstat-no" title="statement not covered" >        res.status(401).send({ error: 'No user with the given email' });</span>
+      } else {
+        // checking the passowords here
+<span class="cstat-no" title="statement not covered" >        if (!bcrypt.compareSync(password, user[0].password)) {</span>
+<span class="cstat-no" title="statement not covered" >          res.status(401).send({ error: 'Incorrect password' });</span>
+        } else {
+          // if everything is good,
+          // then attach to req.user
+          // and call next so the controller
+          // can sign a token from the req.user._id
+<span class="cstat-no" title="statement not covered" >          req.user = user[0];</span>
+<span class="cstat-no" title="statement not covered" >          next();</span>
+        }
+      }
+    })
+    .catch((err) =&gt; {
+<span class="cstat-no" title="statement not covered" >      next(err);</span>
+    });
+  };
+};
+&nbsp;
+// exports.getSignedInUserData = () =&gt; {
+//   return (req, res) =&gt; {
+//     User.findById(req.user.id)
+//       .then((user) =&gt; {
+//         if (!user) {
+//           // if no user is found it was not
+//           // it was a valid JWT but didn't decode
+//           // to a real user in our DB. Either the user was deleted
+//           // since the client got the JWT, or
+//           // it was a JWT from some other source
+&nbsp;
+//           // res.status(401).send('Unauthorized');
+//           return res.json({ error: 'Unauthorized' });
+//         }
+//           // update req.user with fresh user from
+//           // stale token data
+//         return res.json({
+//           first_name: user.first_name,
+//           last_name: user.last_name,
+//           photo_url: user.photo_url,
+//           address: user.address,
+//           phone: user.phone,
+//           email: user.email,
+//         });
+//       })
+//       .catch((err) =&gt; {
+//         console.log('getSignedInUserData err!', err);
+//         return res.json({ error: err.message });
+//       });
+//   };
+// };
+&nbsp;
+// Sign token on signup
+exports.signToken = (id) =&gt; {
+  return jwt.sign(
+    { id },
+    config.secrets.jwt,
+    { expiresIn: config.expireTime }
+  );
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 16 2016 13:48:02 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

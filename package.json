@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js ; exit 0",
-    "start": "nodemon index.js",
-    "test": "export NODE_ENV=testing && ./node_modules/.bin/mocha -R spec 'test/**/**/**/**test.js' ",
+    "start": "export NODE_ENV=development && nodemon index.js",
+    "test": "export NODE_ENV=test && ./node_modules/.bin/mocha -R spec 'test/**/**/**/**test.js' ",
     "coverage": "istanbul cover _mocha -- -R spec 'test/**/**/**/**test.js'"
   },
   "keywords": [

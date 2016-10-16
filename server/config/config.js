@@ -1,6 +1,6 @@
 const config = {
   dev: 'development',
-  test: 'testing',
+  test: 'test',
   prod: 'production',
   port: process.env.PORT || 8000,
   // 1 week (7 days)

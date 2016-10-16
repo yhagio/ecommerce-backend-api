@@ -3,7 +3,7 @@ exports.validateEmail = function(email) {
   const regex = /\S+@\S+\.\S+/;
   const trimmedEmail = email.trim();
 
-  if (trimmedEmail.length > 150) {
+  if (trimmedEmail.length > 40) {
     errorMessage = '* Email is too long, please use shorter email address';
   }
 

@@ -23,6 +23,18 @@ psql -l
 psql -d postpg -c "SELECT * FROM products"
 ```
 
+#### To create database
+```
+createdb your_db_name
+```
+To check
+```
+psql
+\l
+```
+Reference: https://www.postgresql.org/docs/9.1/static/app-createdb.html
+
+
 | APIs | VERB | Parameters |
 | --- |---| ---|
 | /auth/signin | POST | (email, password) |

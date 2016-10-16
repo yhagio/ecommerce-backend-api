@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const api = require('./server/api/api');
 const auth = require('./server/auth/routes');
 
@@ -12,9 +12,11 @@ require('./server/config/middlewares')(app);
 
 // Routes
 app.use('/api', api);
-app.use('/auth', auth);
+app.use('/auth', auth);*/
+const app = require('./server/server');
+const config = require('./server/config/config');
 
 // Start listening
-app.listen(app.get('port'), () => {
-  console.log('Sever started http://localhost:%s', app.get('port'));
+app.listen(config.port, () => {
+  console.log('Sever started http://localhost:%s', config.port);
 });

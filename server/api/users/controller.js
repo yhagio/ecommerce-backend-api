@@ -90,7 +90,6 @@ exports.getSingleUser = (req, res) => {
         // to a real user in our DB. Either the user was deleted
         // since the client got the JWT, or
         // it was a JWT from some other source
-
         return res.status(401).send({ error: 'Unauthorized' });
       }
       // update req.user with fresh user from
