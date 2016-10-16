@@ -1,10 +1,19 @@
 
+
+```
+git clone git@github.com:yhagio/ecommerce-backend-api.git ec
+cd ec
+npm i -g yarn
+yarn
+```
+
+#### Postgres Installation
 ```
 brew update
 brew install postgres
 ```
 
-### Start
+### Start locally
 ```
 npm run start
 ```

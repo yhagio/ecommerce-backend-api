@@ -1,12 +1,13 @@
 {
   "name": "ecommerce-api",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "E-Commerce Backend API",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js ; exit 0",
-    "test": "mocha",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "export NODE_ENV=testing && ./node_modules/.bin/mocha -R spec 'test/**/**/**/**test.js' ",
+    "coverage": "istanbul cover _mocha -- -R spec 'test/**/**/**/**test.js'"
   },
   "keywords": [
     "Node.js",
@@ -36,6 +37,7 @@
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
     "helmet": "^2.3.0",
+    "istanbul": "^0.4.5",
     "jsonwebtoken": "^7.1.9",
     "mailgun-js": "^0.7.12",
     "method-override": "^2.3.6",
