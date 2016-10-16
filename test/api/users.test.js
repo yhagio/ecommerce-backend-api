@@ -5,6 +5,7 @@ const models = require('../../server/models');
 const app = require('../../server/server');
 
 describe('[Users]', () => {
+  // Clean up users table
   before((done) => {
     models.users.destroy({ where: {} })
       .then(() => done(null));

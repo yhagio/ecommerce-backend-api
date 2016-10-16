@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/32</span>
+        <span class='fraction'>32/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">63.64% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>14/22</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/32</span>
+        <span class='fraction'>32/32</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -101,49 +101,49 @@
 56
 57
 58</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -162,12 +162,12 @@
   const regex = /\S+@\S+\.\S+/;
   const trimmedEmail = email.trim();
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (trimmedEmail.length &gt; 40) {
-<span class="cstat-no" title="statement not covered" >    errorMessage = '* Email is too long, please use shorter email address';</span>
+  if (trimmedEmail.length &gt; 40) {
+    errorMessage = '* Email is too long, please use shorter email address';
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!regex.test(trimmedEmail) || trimmedEmail.length === 0) {
-<span class="cstat-no" title="statement not covered" >    errorMessage = '* Email must be in valid format';</span>
+  if (!regex.test(trimmedEmail) || trimmedEmail.length === 0) {
+    errorMessage = '* Email must be in valid format';
   }
 &nbsp;
   return errorMessage;
@@ -176,28 +176,28 @@
 exports.validatePassword = function(password) {
   const errorMessages = [];
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (password.length &gt; 50) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Must be fewer than 50 chars');</span>
+  if (password.length &gt; 50) {
+    errorMessages.push('* Must be fewer than 50 chars');
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (password.length &lt; 8) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Must be longer than 7 chars');</span>
+  if (password.length &lt; 8) {
+    errorMessages.push('* Must be longer than 7 chars');
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!password.match(/[\!\@\#\$\%\^\&amp;\*]/g)) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Missing a symbol(! @ # $ % ^ &amp; *)');</span>
+  if (!password.match(/[\!\@\#\$\%\^\&amp;\*]/g)) {
+    errorMessages.push('* Missing a symbol(! @ # $ % ^ &amp; *)');
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!password.match(/\d/g)) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Missing a number');</span>
+  if (!password.match(/\d/g)) {
+    errorMessages.push('* Missing a number');
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!password.match(/[a-z]/g)) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Missing a lowercase letter');</span>
+  if (!password.match(/[a-z]/g)) {
+    errorMessages.push('* Missing a lowercase letter');
   }
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!password.match(/[A-Z]/g)) {
-<span class="cstat-no" title="statement not covered" >    errorMessages.push('* Missing an uppercase letter');</span>
+  if (!password.match(/[A-Z]/g)) {
+    errorMessages.push('* Missing an uppercase letter');
   }
 &nbsp;
   return errorMessages;
@@ -220,7 +220,7 @@ exports.validateStringLength = function(text, limit) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 16 2016 13:48:02 GMT-0400 (EDT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 16 2016 14:31:18 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
