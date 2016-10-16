@@ -58,6 +58,7 @@ exports.saveUser = (req, res) => {
         last_name,
         email,
         password: hash,
+        is_admin: false,
       };
 
       User.create(newUser)
@@ -67,6 +68,7 @@ exports.saveUser = (req, res) => {
             user: {
               id: data.id,
               first_name: data.first_name,
+              last_name: data.last_name,
               email: data.email,
             },
           });

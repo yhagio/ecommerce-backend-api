@@ -25,3 +25,10 @@
 
 #### Resource
 - [Sequelize](http://docs.sequelizejs.com/en/v3/)
+
+```
+export ADMIN_FNAME=Yuichi
+export ADMIN_LNAME=Hagio
+export ADMIN_EMAIL=admin@cc.cc
+export ADMIN_PASSWORD=Pass123!
+```
