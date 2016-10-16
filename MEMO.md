@@ -1,11 +1,11 @@
 * [X] JWT Token issued on signup / login
 * [X] User authentication (signup) + Validation
-* [ ] User authentication (signin) + Validation
+* [X] User authentication (signin) + Validation
 * [X] GET all products
-* [ ] POST create product + Validation
-* [ ] PUT update product + Validation
+* [X] POST create product + Validation
+* [X] PUT update product + Validation
 * [X] DELETE product
-* [ ] ONLY Admin can add/update/delete product 
+* [X] ONLY Admin can add/update/delete product 
 * [ ] Mailgun notification (Signup confirmation) 
   * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
 * [ ] Mailgun notification (Reset password)
@@ -26,9 +26,12 @@
 #### Resource
 - [Sequelize](http://docs.sequelizejs.com/en/v3/)
 
+To add admin, run this
 ```
+psql -d <Your DB Name> -c "DROP TABLE users"
 export ADMIN_FNAME=Yuichi
 export ADMIN_LNAME=Hagio
 export ADMIN_EMAIL=admin@cc.cc
 export ADMIN_PASSWORD=Pass123!
+npm run start
 ```
