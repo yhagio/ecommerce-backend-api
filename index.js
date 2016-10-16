@@ -1,5 +1,6 @@
 const express = require('express');
-const routes = require('./server/routes/routes');
+const api = require('./server/api/api');
+const auth = require('./server/auth/routes');
 
 // Setting
 const app = express();
@@ -10,7 +11,8 @@ app.set('port', process.env.PORT || 8000);
 require('./server/config/middlewares')(app);
 
 // Routes
-app.use('/', routes);
+app.use('/api', api);
+app.use('/auth', auth);
 
 // Start listening
 app.listen(app.get('port'), () => {
