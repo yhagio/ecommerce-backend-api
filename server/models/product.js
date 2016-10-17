@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Product.hasMany(require('./index').reviews);
+
   // sequelize.sync().then(() => {
   //   Product.findAndCountAll()
   //     .then((result) => {

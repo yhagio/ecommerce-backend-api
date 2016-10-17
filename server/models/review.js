@@ -19,5 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Review.belongsTo(require('./index').products);
+  Review.belongsTo(require('./index').users);
+
   return Review;
 };

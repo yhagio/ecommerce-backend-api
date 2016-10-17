@@ -35,16 +35,20 @@ psql
 Reference: https://www.postgresql.org/docs/9.1/static/app-createdb.html
 
 
-| APIs | VERB | Parameters |
-| --- |---| ---|
-| /auth/signin | POST | (email, password) |
-| /auth/userdata | GET | none |
-| /api/products | GET | None |
-| /api/products/:product_id | GET | (product_id) |
-| /api/admin/products/ | POST | (name, price, description) |
-| /api/admin/products/:product_id | PUT / DELETE | (product_id) |
-| /api/users | POST | (first_name, last_name, email, password) |
-| /api/users/reset_password | POST | (email) |
-| /api/account | GET / PUT / DELETE | (none) |
-| /api/account/invoices | GET | (none) |
+| APIs | VERB | Parameters | Description |
+| --- | --- | --- | --- |
+| /api/users | POST | (first_name, last_name, email, password) | SignUp |
+| /auth/signin | POST | (email, password) | SignIn |
+| /auth/userdata | GET | none | Profile Data |
+| /api/products | GET | None | List of products |
+| /api/products/:product_id | GET | (product_id) | A product |
+| /api/admin/products/ | POST | (name, price, description) | Create product |
+| /api/admin/products/:product_id | PUT / DELETE | (product_id) | Update or delete product |
+| /api/products/:product_id | POST | (product_id) | Add product to cart |
+| /api/users/reset_password | POST | (email) | Reset password via Mailgun |
+| /api/account | GET / PUT / DELETE | (none) | Account info |
+| /api/account/invoices | GET | (none) | Invoice list |
+| /api/account/invoices/:id | GET | (none) | An invoice info |
+| /api/cart | GET | (none) | Shopping cart |
+| /api/cart | POST | (none) | Place the order |
 

@@ -18,4 +18,14 @@ exports.getSingleProduct = (req, res) => {
     });
 };
 
+exports.addProductToCart = (req, res) => {
+  Product.findById(req.params.product_id)
+    .then((product) => {
+      Cart
+    })
+    .catch((err) => {
+      console.log('Product fetching err!', err);
+      return res.status(400).send({ error: err.message });
+    });
+};
 

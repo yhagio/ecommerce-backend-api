@@ -35,3 +35,14 @@ export ADMIN_EMAIL=admin@cc.cc
 export ADMIN_PASSWORD=Pass123!
 npm run start
 ```
+
+DB Design
+http://stackoverflow.com/questions/8865272/designing-a-rudimentary-shopping-cart-database
+https://www.princeton.edu/~rcurtis/ultradev/ecommdatabase2.html
+
+Sequelize Relation / Foreign Key
+https://github.com/sequelize/sequelize/issues/5792
+
+Social Network DB Relationship
+http://www.codedodle.com/2014/12/social-network-friends-database.html
+

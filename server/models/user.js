@@ -46,9 +46,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: '',
     },
-  }, {
-
   });
+
+  User.hasMany(require('./index').reviews);
+  User.hasMany(require('./index').orders);
+  User.hasMany(require('./index').orderDetails);
 
   sequelize.sync().then(() => {
     User.findAndCountAll()
