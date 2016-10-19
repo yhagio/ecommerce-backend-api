@@ -46,3 +46,8 @@ https://github.com/sequelize/sequelize/issues/5792
 Social Network DB Relationship
 http://www.codedodle.com/2014/12/social-network-friends-database.html
 
+
+#### Sequelize-CLI
+```
+sequelize init
+```

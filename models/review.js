@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Review = sequelize.define('reviews', {
+  const Review = sequelize.define('Review', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,10 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     rating: {
       type: DataTypes.INTEGER,
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        Review.belongsTo(models.Product);
+        Review.belongsTo(models.User);
+      },
+    },
   });
-
-  Review.belongsTo(require('./index').products);
-  Review.belongsTo(require('./index').users);
 
   return Review;
 };

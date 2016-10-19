@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define('categories', {
+  const Category = sequelize.define('Category', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -9,9 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        Category.hasMany(models.ProductCategory);
+        Category.belongsToMany(models.Product, { through: models.ProductCategory });
+      },
+    },
   });
 
-  Category.hasMany('Product');
+  // Category.hasMany('Product');
 
   sequelize.sync().then(() => {
     Category.findAndCountAll()

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define('orders', {
+  const Order = sequelize.define('Order', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,10 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     total: {
       type: DataTypes.FLOAT,
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        Order.hasMany(models.OrderDetail);
+        Order.belongsTo(models.User, { foreignKey: 'user_id' });
+      },
+    },
   });
-
-  Order.hasMany(require('./index').orderDetails);
-  Order.belongs(require('./index').users);
 
   return Order;
 };

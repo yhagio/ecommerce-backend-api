@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const User = require('../../models').users;
+const User = require('../../../models').User;
 const signToken = require('../../auth/auth').signToken;
 const validatePassword = require('../../utils/helpers').validatePassword;
 const validateEmail = require('../../utils/helpers').validateEmail;

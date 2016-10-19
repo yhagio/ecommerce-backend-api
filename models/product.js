@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('products', {
+  const Product = sequelize.define('Product', {
     id: {
       // type: DataTypes.INTEGER,
       type: DataTypes.UUID,
@@ -16,9 +16,15 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        Product.hasMany(models.Review);
+        Product.hasMany(models.ProductCategory);
+        Product.belongsToMany(models.Category, { through: models.ProductCategory });
+      },
+    },
   });
-
-  Product.hasMany(require('./index').reviews);
 
   // sequelize.sync().then(() => {
   //   Product.findAndCountAll()

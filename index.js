@@ -14,7 +14,7 @@ require('./server/config/middlewares')(app);
 app.use('/api', api);
 app.use('/auth', auth);*/
 const app = require('./server/server');
-const config = require('./server/config/config');
+const config = require('./server/config');
 
 // Start listening
 app.listen(config.port, () => {

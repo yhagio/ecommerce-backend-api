@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const OrderDetail = sequelize.define('orderDetails', {
+  const OrderDetail = sequelize.define('OrderDetail', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -21,9 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        OrderDetail.belongsTo(models.Order, { foreignKey: 'order_id' });
+        OrderDetail.belongsTo(models.User, { foreignKey: 'user_id' });
+      },
+    },
   });
 
-  OrderDetail.belongsTo(require('./index').orders);
-  OrderDetail.belongsTo(require('./index').users);
   return OrderDetail;
 };

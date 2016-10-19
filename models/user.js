@@ -1,19 +1,14 @@
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('users', {
+  const User = sequelize.define('User', {
     id: {
-      // type: DataTypes.INTEGER,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
       allowNull: false,
       unique: true,
-      // autoIncrement: true,
     },
-    // username: {
-    //   type: DataTypes.STRING,
-    // },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -46,11 +41,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: '',
     },
+  }, {
+    classMethods: {
+      associate(models) {
+        User.hasMany(models.Review);
+        User.hasMany(models.Order);
+        User.hasMany(models.OrderDetail);
+      },
+    },
   });
 
-  User.hasMany(require('./index').reviews);
-  User.hasMany(require('./index').orders);
-  User.hasMany(require('./index').orderDetails);
 
   sequelize.sync().then(() => {
     User.findAndCountAll()

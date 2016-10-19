@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const config = require('../config/config');
 const checkToken = expressJwt({ secret: config.secrets.jwt });
-const User = require('../models').users;
+const User = require('../../models').User;
 
 // Decode user's token
 exports.decodeToken = () => {
@@ -34,7 +34,7 @@ exports.getFreshUser = () => {
           // to a real user in our DB. Either the user was deleted
           // since the client got the JWT, or
           // it was a JWT from some other source
-          res.status(401).send('Unauthorized');
+          res.status(401).send({ error: 'Unauthorized' });
         } else {
           // update req.user with fresh user from
           // stale token data
