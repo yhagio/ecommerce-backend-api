@@ -5,7 +5,7 @@ const signToken = require('../../auth/auth').signToken;
 const validatePassword = require('../../utils/helpers').validatePassword;
 const validateEmail = require('../../utils/helpers').validateEmail;
 
-/** 
+/**
  * saveUser: Create new user on signup
  * getSingleUser: Retrieve one user
  */
@@ -25,7 +25,7 @@ exports.saveUser = (req, res) => {
   if (first_name.length > 30 || last_name.length > 30) {
     return res
       .status(400)
-      .send({ error: 'First and last names must be less than 30 characters.' }); 
+      .send({ error: 'First and last names must be less than 30 characters.' });
   }
 
   const emailValidationError = validateEmail(email);

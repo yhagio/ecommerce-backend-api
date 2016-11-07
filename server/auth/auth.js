@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const bcrypt = require('bcrypt');
 
-const config = require('../config/config');
+const config = require('../config');
 const checkToken = expressJwt({ secret: config.secrets.jwt });
 const User = require('../../models').User;
 
