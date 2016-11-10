@@ -1,10 +1,13 @@
 const bcrypt = require('bcrypt');
+const users = require('../seeders/users');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      // type: DataTypes.UUID,
+      // defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false,
       unique: true,
@@ -47,26 +50,47 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Review);
         User.hasMany(models.Order);
         User.hasMany(models.OrderDetail);
+        // User.hasMany(models.Cart);
+        User.hasMany(models.CartItem);
       },
     },
   });
 
 
+  /*
+    Insert seed users
+    Insert admin user
+  */
   sequelize.sync().then(() => {
     User.findAndCountAll()
       .then((result) => {
-        console.log('RESULT COUNT: ', result.count);
         if (!result || result.count === 0) {
-          const salt = bcrypt.genSaltSync(10);
-          const hash = bcrypt.hashSync(process.env.ADMIN_PASSWORD, salt);
+          if (process.env.ADMIN_EMAIL &&
+              process.env.ADMIN_FNAME &&
+              process.env.ADMIN_LNAME &&
+              process.env.ADMIN_PASSWORD) {
+            const hashed = bcrypt.hashSync(process.env.ADMIN_PASSWORD, bcrypt.genSaltSync(10));
+            User.create({
+              first_name: process.env.ADMIN_FNAME,
+              last_name: process.env.ADMIN_LNAME,
+              email: process.env.ADMIN_EMAIL,
+              password: hashed,
+              is_admin: true,
+            });
+          }
 
-          User.create({
-            first_name: process.env.ADMIN_FNAME,
-            last_name: process.env.ADMIN_LNAME,
-            email: process.env.ADMIN_EMAIL,
-            password: hash,
-            is_admin: true,
-          });
+          for (let i = 0; i < users.length; i++) {
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(users[i].password, salt);
+
+            User.create({
+              first_name: users[i].first_name,
+              last_name: users[i].last_name,
+              email: users[i].email,
+              password: hash,
+              is_admin: false,
+            });
+          }
         }
       });
   }).catch((e) => {

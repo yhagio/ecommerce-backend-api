@@ -1,11 +1,13 @@
+const products = require('../seeders/products');
+
 module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', {
     id: {
-      // type: DataTypes.INTEGER,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      // type: DataTypes.UUID,
+      // defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
-      // autoIncrement: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -22,25 +24,27 @@ module.exports = (sequelize, DataTypes) => {
         Product.hasMany(models.Review);
         Product.hasMany(models.ProductCategory);
         Product.belongsToMany(models.Category, { through: models.ProductCategory });
+        Product.hasMany(models.CartItem);
       },
     },
   });
 
-  // sequelize.sync().then(() => {
-  //   Product.findAndCountAll()
-  //     .then((result) => {
-  //       console.log('RESULT COUNT: ', result.count);
-  //       if (!result || result.count === 0) {
-  //         Product.create({
-  //           name: 'Smaple Course',
-  //           description: 'Sample Description',
-  //           price: 12.5,
-  //         });
-  //       }
-  //     });
-  // }).catch((e) => {
-  //   console.log('ERROR SYNCING WITH DB: ', e);
-  // });
+  sequelize.sync().then(() => {
+    Product.findAndCountAll()
+      .then((result) => {
+        if (!result || result.count === 0) {
+          for (let i = 0; i < products.length; i++) {
+            Product.create({
+              name: products[i].name,
+              description: products[i].description,
+              price: products[i].price,
+            });
+          }
+        }
+      });
+  }).catch((e) => {
+    console.log('ERROR SYNCING WITH DB: ', e);
+  });
 
   return Product;
 };

@@ -14,6 +14,7 @@ exports.decodeToken = () => {
     // if it is, place it on the headers where it should be
     // so checkToken can see it. See follow the 'Bearer 034930493' format
     // so checkToken can see it and decode it
+    // console.log('req.query:', req.query);
     if (req.query && req.query.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.query.access_token;
     }
@@ -34,16 +35,18 @@ exports.getFreshUser = () => {
           // to a real user in our DB. Either the user was deleted
           // since the client got the JWT, or
           // it was a JWT from some other source
+          // console.log('getFreshUser then')
           res.status(401).send({ error: 'Unauthorized' });
         } else {
           // update req.user with fresh user from
           // stale token data
           req.user = user;
-          // console.log('FOUND IT!', user);
+          // console.log('getFreshUser then \n', req.user);
           next();
         }
       })
       .catch((err) => {
+        // console.log('getFreshUser catch \n', err);
         next(err);
       });
   };

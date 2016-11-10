@@ -10,7 +10,7 @@ exports.getAllProducts = (req, res) => {
 };
 
 exports.getSingleProduct = (req, res) => {
-  Product.findById(req.params.product_id)
+  Product.findById(req.params.id)
     .then(product => res.json(product))
     .catch((err) => {
       console.log('Product fetching err!', err);

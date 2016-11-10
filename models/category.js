@@ -1,3 +1,5 @@
+const categories = require('../seeders/categories');
+
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     id: {
@@ -18,16 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  // Category.hasMany('Product');
-
   sequelize.sync().then(() => {
     Category.findAndCountAll()
       .then((result) => {
-        console.log('RESULT COUNT: ', result.count);
+        // console.log('RESULT COUNT: ', result.count);
         if (!result || result.count === 0) {
-          Category.create({
-            name: 'Beginner',
-          });
+          for (let i = 0; i < categories.length; i++) {
+            Category.create({
+              name: categories[i].name,
+            });
+          }
         }
       });
   }).catch((e) => {

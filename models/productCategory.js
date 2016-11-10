@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     product_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
     },
     category_id: {
       type: DataTypes.STRING,

@@ -11,8 +11,8 @@ const validateEmail = require('../../utils/helpers').validateEmail;
  */
 
 exports.saveUser = (req, res) => {
-  const first_name = req.body.first_name ? req.body.first_name.trim() : '';
-  const last_name = req.body.last_name ? req.body.last_name.trim() : '';
+  const first_name = req.body.firstName ? req.body.firstName.trim() : '';
+  const last_name = req.body.lastName ? req.body.lastName.trim() : '';
   const email = req.body.email ? req.body.email.trim() : '';
   const password = req.body.password ? req.body.password.trim() : '';
 
@@ -42,9 +42,11 @@ exports.saveUser = (req, res) => {
       .send({ error: passwordValidationError });
   }
 
-  User.findOne({ email })
+  User.findAll({
+    where: { email }
+  })
     .then((user) => {
-      if (user) {
+      if (user.length > 0) {
         return res
         .status(400)
         .send({ error: 'The email is already registered.' });
