@@ -5,5 +5,6 @@ router.use('/products', require('./products/routes'));
 router.use('/users', require('./users/routes'));
 router.use('/cart', require('./cart/routes'));
 router.use('/admin', require('./admin/routes'));
+router.use('/payment', require('./payment/routes'));
 
 module.exports = router;

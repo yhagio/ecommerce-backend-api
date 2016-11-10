@@ -25,25 +25,25 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  /* Seed products
-  const products = require('../seeders/products');
+  // Seed products
+  // const products = require('../seeders/products');
 
-  sequelize.sync().then(() => {
-    Product.findAndCountAll()
-      .then((result) => {
-        if (!result || result.count === 0) {
-          for (let i = 0; i < products.length; i++) {
-            Product.create({
-              name: products[i].name,
-              description: products[i].description,
-              price: products[i].price,
-            });
-          }
-        }
-      });
-  }).catch((e) => {
-    console.log('ERROR SYNCING WITH DB: ', e);
-  });
-  */
+  // sequelize.sync().then(() => {
+  //   Product.findAndCountAll()
+  //     .then((result) => {
+  //       if (!result || result.count === 0) {
+  //         for (let i = 0; i < products.length; i++) {
+  //           Product.create({
+  //             name: products[i].name,
+  //             description: products[i].description,
+  //             price: products[i].price,
+  //           });
+  //         }
+  //       }
+  //     });
+  // }).catch((e) => {
+  //   console.log('ERROR SYNCING WITH DB: ', e);
+  // });
+  //
   return Product;
 };

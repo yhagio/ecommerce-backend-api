@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate(models) {
-        CartItem.belongsTo(models.User, { foreignKey: 'user_id' });
-        CartItem.belongsTo(models.Product, { foreignKey: 'product_id' });
+        CartItem.belongsTo(models.User /*, { foreignKey: 'user_id' }*/);
+        CartItem.belongsTo(models.Product /*, { foreignKey: 'product_id' }*/);
       },
     },
   });

@@ -33,6 +33,7 @@ export ADMIN_FNAME=Yuichi
 export ADMIN_LNAME=Hagio
 export ADMIN_EMAIL=admin@cc.cc
 export ADMIN_PASSWORD=Pass123!
+export STRIPE_API_KEY=sk_test_OJz03Gsmewauak1Y2dSEuUtJ
 npm run start
 ```
 
