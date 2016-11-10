@@ -14,13 +14,14 @@ exports.decodeToken = () => {
     // if it is, place it on the headers where it should be
     // so checkToken can see it. See follow the 'Bearer 034930493' format
     // so checkToken can see it and decode it
-    // console.log('req.query:', req.query);
     if (req.query && req.query.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.query.access_token;
     }
     // this will call next if token is valid
     // and send error if it is not. It will attached
     // the decoded token to req.user
+    // console.log('>>>>>>>>> decodeToken >>>>>>> \n', req.query);
+    // console.log('<<<<<<<<<<<<<<<<<<<\n');
     checkToken(req, res, next);
   };
 };
@@ -29,6 +30,8 @@ exports.getFreshUser = () => {
   return (req, res, next) => {
     User.findById(req.user.id)
       .then((user) => {
+        // console.log('>>>>>>>>> getFreshUser >>>>>>> \n', user);
+        // console.log('<<<<<<<<<<<<<<<<<<<\n');
         if (!user) {
           // if no user is found it was not
           // it was a valid JWT but didn't decode

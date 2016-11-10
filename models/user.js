@@ -1,6 +1,3 @@
-const bcrypt = require('bcrypt');
-const users = require('../seeders/users');
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -60,7 +57,10 @@ module.exports = (sequelize, DataTypes) => {
   /*
     Insert seed users
     Insert admin user
-  */
+
+  const bcrypt = require('bcrypt');
+  const users = require('../seeders/users');
+
   sequelize.sync().then(() => {
     User.findAndCountAll()
       .then((result) => {
@@ -96,6 +96,6 @@ module.exports = (sequelize, DataTypes) => {
   }).catch((e) => {
     console.log('ERROR SYNCING WITH DB: ', e);
   });
-
+  */
   return User;
 };

@@ -1,5 +1,3 @@
-const categories = require('../seeders/categories');
-
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     id: {
@@ -20,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  /*
+  Seed categories
+  const categories = require('../seeders/categories');
+
   sequelize.sync().then(() => {
     Category.findAndCountAll()
       .then((result) => {
@@ -35,6 +37,6 @@ module.exports = (sequelize, DataTypes) => {
   }).catch((e) => {
     console.log('ERROR SYNCING WITH DB: ', e);
   });
-
+  */
   return Category;
 };

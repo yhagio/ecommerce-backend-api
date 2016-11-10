@@ -14,26 +14,13 @@ exports.getCart = (req, res) => {
   // INNER JOIN dbo.TableB B ON A.common = B.common
   // INNER JOIN dbo.TableC C ON A.common = C.common
 
-  Model.sequelize.query(`SELECT * FROM "Products" AS product LEFT JOIN "CartItems" AS cart ON product.id = cart.product_id WHERE cart.user_id=` + req.user.id)
-    .then((cart) => {
-      // console.log('<<<<<<<<CART>>>>>>>>> \n', cart[0]);
-      return res.json(cart);
-    }).catch((err) => {
-      // console.log('>>>>>ERR>>>>>> \n', err);
-      return res.status(400).send({ error: err.message });
-    });
-
-  // CartItem.findAll({
-  //   where: {
-  //     user_id: req.user.id,
-  //   },
-  // }).then((cart) => {
-  //   // console.log('<<<<<<<<CART>>>>>>>>> \n', cart);
-  //   return res.json(cart);
-  // }).catch((err) => {
-  //   // console.log('ERR', err);
-  //   return res.status(400).send({ error: err.message });
-  // });
+  Model.sequelize.query(`
+    SELECT * FROM "Products" AS product
+    LEFT JOIN "CartItems" AS cart 
+    ON product.id = cart.product_id 
+    WHERE cart.user_id=` + req.user.id)
+    .then(cart => res.json(cart))
+    .catch(err => res.status(400).send({ error: err.message }));
 };
 
 exports.addToCart = (req, res) => {
@@ -44,11 +31,30 @@ exports.addToCart = (req, res) => {
   CartItem.create({
     user_id: req.user.id,
     product_id: req.body.id,
-  }).then((data) => {
-    // console.log('Data', data);
-    return res.json(data);
+  }).then(data => res.json(data))
+    .catch(err => res.status(400).send({ error: err.message }));
+};
+
+exports.removeItemFromCart = (req, res) => {
+  if (!req.user) {
+    return res.status(403).send({ error: 'Not authorized.' });
+  }
+
+  CartItem.destroy({
+    where: {
+      id: req.params.id,
+      user_id: req.user.id,
+    },
+  }).then(() => {
+    // Get the updated cart of ther user after deleted one
+    Model.sequelize.query(`
+      SELECT * FROM "Products" AS product
+      LEFT JOIN "CartItems" AS cart 
+      ON product.id = cart.product_id 
+      WHERE cart.user_id=` + req.user.id)
+      .then(cart => res.json(cart))
+      .catch(err => res.status(400).send({ error: err.message }));
   }).catch((err) => {
-    // console.log('addCart err', err);
-    return res.status(400).send({ error: err.message });
+    res.status(400).send({ error: err.message });
   });
 };
