@@ -14,8 +14,9 @@
 * [ ] Social share buttons
 
 #### Stripe integration
-* [ ] User can purchase a product 
-* [ ] Invoices, User can see them in account page
+* [X] User can purchase a product 
+* [ ] User has access to the purchased product (downloadable link)
+* [ ] Receipts, User can see them in account page
 * [ ] Refund
 
 #### Testing
