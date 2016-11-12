@@ -85,6 +85,7 @@ exports.saveUser = (req, res) => {
     });
 };
 
+// Retrieve the authenticated user
 exports.getSingleUser = (req, res) => {
   User.findById(req.user.id)
     .then((user) => {
@@ -98,6 +99,7 @@ exports.getSingleUser = (req, res) => {
       }
       // update req.user with fresh user from
       // stale token data & never send password back!
+      console.log('>>>>>\n', user)
       return res.json({
         first_name: user.first_name,
         last_name: user.last_name,

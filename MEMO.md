@@ -15,7 +15,7 @@
 
 #### Stripe integration
 * [X] User can purchase a product 
-* [ ] User has access to the purchased product (downloadable link)
+* [X] User has access to the purchased product
 * [ ] Receipts, User can see them in account page
 * [ ] Refund
 
