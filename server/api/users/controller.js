@@ -115,4 +115,37 @@ exports.getSingleUser = (req, res) => {
     });
 };
 
+exports.updateUser = (req, res) => {
+  const email = req.body.email.trim() || req.user.email;
+  const first_name = req.body.first_name.trim() || req.user.first_name;
+  const last_name = req.body.last_name.trim() || req.user.last_name;
+
+  User.findById(req.user.id)
+    .then((user) => {
+      if (!user) {
+        return res.status(401).send({ error: 'Unauthorized' });
+      }
+      user.update({ email, first_name, last_name })
+        .then((updatedUser) => {
+          // console.log('===== UPDATED ===== \n', updatedUser);
+          return res.json({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            photo_url: user.photo_url,
+            address: user.address,
+            phone: user.phone,
+            email: user.email,
+          });
+        })
+        .catch((error) => {
+          console.log('updating user err!', error);
+          return res.status(400).send({ error: error.message });
+        });
+    })
+    .catch((err) => {
+      console.log('finding updating user err!', err);
+      return res.status(400).send({ error: err.message });
+    });
+};
+
 
