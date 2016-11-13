@@ -6,20 +6,19 @@
 * [X] PUT update product + Validation
 * [X] DELETE product
 * [X] ONLY Admin can add/update/delete product 
-* [ ] Mailgun notification (Signup confirmation) 
-  * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
-* [ ] Mailgun notification (Reset password)
-* [ ] Search products
-* [ ] Add a review of a product user purchased
-* [ ] Social share buttons
 
 #### Stripe integration
 * [X] User can purchase a product 
 * [X] User has access to the purchased product
-* [ ] Receipts, User can see them in account page
-* [ ] Refund
+* [X] Retrieve user's receipts
 
-#### Testing
+#### Work in progress / future
+* [ ] Mailgun notification (Reset password)
+* [ ] Mailgun notification (Signup confirmation) 
+  * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
+* [ ] Add a review of a product user purchased
+* [ ] Search products
+* [ ] Refund
 * [ ] Unit Testing
 * [ ] E2E Testing?
 
