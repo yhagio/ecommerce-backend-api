@@ -1,9 +1,12 @@
 const bcrypt = require('bcrypt');
+const Mailgun = require('mailgun-js');
 
 const User = require('../../../models').User;
 const signToken = require('../../auth/auth').signToken;
 const validatePassword = require('../../utils/helpers').validatePassword;
 const validateEmail = require('../../utils/helpers').validateEmail;
+const generatePassword = require('../../utils/helpers').generatePassword;
+const generateEmailTemplate = require('../../utils/helpers').generateEmailTemplate;
 
 /**
  * saveUser: Create new user on signup
@@ -76,7 +79,7 @@ exports.saveUser = (req, res) => {
           });
         })
         .catch((err) => {
-          console.error('Error on saving user: ', err);
+          // console.error('Error on saving user: ', err);
           return res.status(400).send({ error: err.message });
         });
     })
@@ -99,7 +102,7 @@ exports.getSingleUser = (req, res) => {
       }
       // update req.user with fresh user from
       // stale token data & never send password back!
-      console.log('>>>>>\n', user)
+      // console.log('>>>>>\n', user)
       return res.json({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -110,7 +113,7 @@ exports.getSingleUser = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log('getSignedInUserData err!', err);
+      // console.log('getSignedInUserData err!', err);
       return res.status(400).send({ error: err.message });
     });
 };
@@ -129,23 +132,79 @@ exports.updateUser = (req, res) => {
         .then((updatedUser) => {
           // console.log('===== UPDATED ===== \n', updatedUser);
           return res.json({
-            first_name: user.first_name,
-            last_name: user.last_name,
-            photo_url: user.photo_url,
-            address: user.address,
-            phone: user.phone,
-            email: user.email,
+            first_name: updatedUser.first_name,
+            last_name: updatedUser.last_name,
+            photo_url: updatedUser.photo_url,
+            address: updatedUser.address,
+            phone: updatedUser.phone,
+            email: updatedUser.email,
           });
         })
         .catch((error) => {
-          console.log('updating user err!', error);
+          // console.log('updating user err!', error);
           return res.status(400).send({ error: error.message });
         });
     })
     .catch((err) => {
-      console.log('finding updating user err!', err);
+      // console.log('finding updating user err!', err);
       return res.status(400).send({ error: err.message });
     });
 };
 
+exports.sendNewPassword = (req, res) => {
+  const email = req.body.email;
+  if (email.length === 0 || email.trim().length === 0) {
+    return res.status(400).send({ error: 'Eamil required' });
+  }
 
+  const newPassword = generatePassword();
+
+  User.findAll({ where: { email } })
+    .then((user) => {
+      // console.log('USER CHECK', user[0].email, email)
+      if (user[0] && user[0].email === email) {
+        // Update password and send the new password with mailgun
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(newPassword, salt);
+
+        user[0].update({ password: hash })
+          .then((updatedUser) => {
+            const mailgun = new Mailgun({
+              apiKey: process.env.MAILGUN_API_KEY,
+              domain: process.env.MAILGUN_DOMAIN,
+            });
+
+            const data = {
+              from: `ECommerce Admin <postmaster@${process.env.MAILGUN_DOMAIN}>`,
+              to: updatedUser.email,
+              subject: '[ECommerce Admin] - New Password',
+              html: generateEmailTemplate(user.name, newPassword),
+            };
+
+            // console.log('NEW PASS: ', newPassword);
+
+            mailgun.messages().send(data)
+              .then((result) => {
+                // console.log('Mailgun success!!', result);
+                return res.status(200).send('Check your email!');
+              })
+              .catch((err) => {
+                // console.log('Mailgun user err!', err);
+                return res.status(400).send({ error: err.message });
+              });
+          })
+          .catch((error) => {
+            // console.log('User update err!', error);
+            return res.status(401).send({ error: 'Unauthorized' });
+          });
+
+      } else {
+        // console.log('User err!', user);
+        return res.status(401).send({ error: 'Unauthorized' });
+      }
+    })
+    .catch((err) => {
+      // console.log('finding user err!', err);
+      return res.status(400).send({ error: err.message });
+    });
+};

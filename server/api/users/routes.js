@@ -11,4 +11,7 @@ router.route('/account')
   .get(checkUser, controller.getSingleUser)
   .put(checkUser, controller.updateUser);
 
+router.route('/reset-password')
+  .post(controller.sendNewPassword);
+
 module.exports = router;
