@@ -23,7 +23,7 @@ exports.payTotal = (req, res) => {
   /*****************************
    *  WHEN EXISTING CUSTOMER (PURCHASED BEFORE) PAYS
    *****************************/
-  console.log('=================\n\n', purchaseList);
+  // console.log('=================\n\n', purchaseList);
   if (req.user.stripe_customer_id) {
     // 1. Payment
     const handleEachItem = (list) => {
