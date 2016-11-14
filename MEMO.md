@@ -13,27 +13,34 @@
 * [X] Retrieve user's receipts
 
 #### Work in progress / future
-* [ ] Mailgun notification (Reset password)
-* [ ] Mailgun notification (Signup confirmation) 
-  * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
+* [X] Mailgun notification (Reset password)
 * [ ] Add a review of a product user purchased
 * [ ] Search products
+* [ ] Limit/Skip fetch products, reviews, receipts
+* [ ] Show category of each product
+* [ ] Filter (Category, date added)
+* [ ] Mailgun notification (Signup confirmation) 
+  * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
 * [ ] Refund
 * [ ] Unit Testing
 * [ ] E2E Testing?
-
+* [ ] Docker
+* [ ] Redis
+* [ ] Deploy
 
 #### Resource
 - [Sequelize](http://docs.sequelizejs.com/en/v3/)
 
-To add admin, run this
+To start
 ```
 psql -d <Your DB Name> -c "DROP TABLE users"
 export ADMIN_FNAME=Yuichi
 export ADMIN_LNAME=Hagio
 export ADMIN_EMAIL=admin@cc.cc
 export ADMIN_PASSWORD=Pass123!
-export STRIPE_API_KEY=sk_test_OJz03Gsmewauak1Y2dSEuUtJ
+export STRIPE_API_KEY=YOUR_TEST_STRIPE_KEY
+export MAILGUN_API_KEY=YOUR_SECRET_KEY
+export MAILGUN_DOMAIN=YOUR_DOMAIN
 npm run start
 ```
 
