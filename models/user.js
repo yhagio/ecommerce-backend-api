@@ -49,8 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate(models) {
         User.hasMany(models.Review);
-        User.hasMany(models.Order);
-        User.hasMany(models.OrderDetail);
         User.hasMany(models.CartItem);
         User.hasMany(models.Receipt);
       },
@@ -100,6 +98,6 @@ module.exports = (sequelize, DataTypes) => {
   // }).catch((e) => {
   //   console.log('ERROR SYNCING WITH DB: ', e);
   // });
-  //
+  
   return User;
 };

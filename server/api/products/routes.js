@@ -16,4 +16,8 @@ router.route('/:id/purchased')
 // router.route('/purchased-list')
   // .get(checkUser, controller.getPurchasedList);
 
+router.route('/:id/reviews')
+  .post(checkUser, controller.submitReview)
+  .delete(checkUser, controller.deleteReview);
+
 module.exports = router;

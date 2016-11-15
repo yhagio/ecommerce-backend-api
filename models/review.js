@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     product_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     body: {
       type: DataTypes.STRING,
@@ -25,6 +25,22 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+
+  // sequelize.sync().then(() => {
+  //   Review.findAndCountAll()
+  //     .then((result) => {
+  //       if (!result || result.count === 0) {
+  //         Review.create({
+  //           product_id: 1,
+  //           user_id: 1,
+  //           body: 'Sample review body comment!',
+  //           rating: 3,
+  //         });
+  //       }
+  //     });
+  // }).catch((e) => {
+  //   console.log('ERROR SYNCING WITH DB: ', e);
+  // });
 
   return Review;
 };

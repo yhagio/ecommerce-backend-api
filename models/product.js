@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
 
   // Seed products
   // const products = require('../seeders/products');
-
   // sequelize.sync().then(() => {
   //   Product.findAndCountAll()
   //     .then((result) => {
@@ -44,6 +43,6 @@ module.exports = (sequelize, DataTypes) => {
   // }).catch((e) => {
   //   console.log('ERROR SYNCING WITH DB: ', e);
   // });
-  //
+  
   return Product;
 };
