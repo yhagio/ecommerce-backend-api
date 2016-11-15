@@ -8,9 +8,12 @@ router.route('/')
   .get(controller.getAllProducts);
 
 router.route('/:id')
-  .get(controller.getSingleProduct);
+  .get(auth.hasJWT(), controller.getSingleProduct);
 
 router.route('/:id/purchased')
-  .get(checkUser, controller.getPurchasedroduct);
+  .get(checkUser, controller.getSinglePurchasedProductInfo);
+
+// router.route('/purchased-list')
+  // .get(checkUser, controller.getPurchasedList);
 
 module.exports = router;

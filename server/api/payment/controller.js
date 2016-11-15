@@ -23,7 +23,8 @@ exports.payTotal = (req, res) => {
   /*****************************
    *  WHEN EXISTING CUSTOMER (PURCHASED BEFORE) PAYS
    *****************************/
-  // console.log('=================\n\n', purchaseList);
+  // console.log('======= USER =========\n\n', req.user);
+  // console.log('======= PAY =========\n\n', purchaseList);
   if (req.user.stripe_customer_id) {
     // 1. Payment
     const handleEachItem = (list) => {
@@ -53,6 +54,7 @@ exports.payTotal = (req, res) => {
     handleEachItem(purchaseList)
     .then((result) => {
       // 3. Empty the cart after successfully paid
+      // console.log('==== HANDLED ===\n', result);
       return CartItem.destroy({
         where: {
           user_id: req.user.id,
@@ -60,7 +62,10 @@ exports.payTotal = (req, res) => {
       });
     })
     .then(data => res.sendStatus(200))
-    .catch(error => res.status(400).send(error));
+    .catch(error => {
+      // console.log('==== Handling payment error ====\n', error);
+      return res.status(400).send(error);
+    });
 
   /*****************************
    *  WHEN NEW CUSTOMER PAYS

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const Mailgun = require('mailgun-js');
 
 const User = require('../../../models').User;
+const Receipt = require('../../../models').Receipt;
 const signToken = require('../../auth/auth').signToken;
 const validatePassword = require('../../utils/helpers').validatePassword;
 const validateEmail = require('../../utils/helpers').validateEmail;
@@ -103,14 +104,44 @@ exports.getSingleUser = (req, res) => {
       // update req.user with fresh user from
       // stale token data & never send password back!
       // console.log('>>>>>\n', user)
-      return res.json({
-        first_name: user.first_name,
-        last_name: user.last_name,
-        photo_url: user.photo_url,
-        address: user.address,
-        phone: user.phone,
-        email: user.email,
+      Receipt.findAll({
+        where: {
+          user_id: req.user.id,
+        },
+      })
+      .then((receipts) => {
+        if (receipts.length > 0) {
+          // console.log('<><><><><><>Receipt: \n\n', receipt[0]);
+          const purchasedProductIds = [];
+          receipts.forEach((receipt) => {
+            purchasedProductIds.push(receipt.product_id);
+          });
+
+          return res.json({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            photo_url: user.photo_url,
+            address: user.address,
+            phone: user.phone,
+            email: user.email,
+            purchasedProductIds,
+          });
+        }
+        return res.status(403).send('No purcahsed product!');
+      })
+      .catch((err) => {
+        // console.log('<><><><><><>ERROR RECEIPT: \n\n', err);
+        return res.status(400).send({ error: err.message });
       });
+
+      // return res.json({
+      //   first_name: user.first_name,
+      //   last_name: user.last_name,
+      //   photo_url: user.photo_url,
+      //   address: user.address,
+      //   phone: user.phone,
+      //   email: user.email,
+      // });
     })
     .catch((err) => {
       // console.log('getSignedInUserData err!', err);

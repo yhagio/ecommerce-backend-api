@@ -6,7 +6,9 @@ const config = require('../config');
 const checkToken = expressJwt({ secret: config.secrets.jwt });
 const User = require('../../models').User;
 
-// Decode user's token
+/**
+ *  Decode user's token
+ * */
 exports.decodeToken = () => {
   return (req, res, next) => {
     // [OPTIONAL]
@@ -20,25 +22,25 @@ exports.decodeToken = () => {
     // this will call next if token is valid
     // and send error if it is not. It will attached
     // the decoded token to req.user
-    // console.log('>>>>>>>>> decodeToken >>>>>>> \n', req.query);
-    // console.log('<<<<<<<<<<<<<<<<<<<\n');
     checkToken(req, res, next);
   };
 };
 
+/**
+ * Set req.user to the authenticated user if JWT is valid & user is found in DB
+ * Otherwise return error
+ */
 exports.getFreshUser = () => {
   return (req, res, next) => {
     User.findById(req.user.id)
       .then((user) => {
         // console.log('>>>>>>>>> getFreshUser >>>>>>> \n', user);
-        // console.log('<<<<<<<<<<<<<<<<<<<\n');
         if (!user) {
-          // if no user is found it was not
+          // if no user is found, but
           // it was a valid JWT but didn't decode
           // to a real user in our DB. Either the user was deleted
           // since the client got the JWT, or
           // it was a JWT from some other source
-          // console.log('getFreshUser then')
           res.status(401).send({ error: 'Unauthorized' });
         } else {
           // update req.user with fresh user from
@@ -55,7 +57,25 @@ exports.getFreshUser = () => {
   };
 };
 
-// Authenticate the user
+/**
+ * Just check if user has JWT (user is logged in or not)
+ */
+exports.hasJWT = () => {
+  return (req, res, next) => {
+    if (req.headers.authorization.length > 20) {
+      if (req.query && req.query.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.query.access_token;
+      }
+      checkToken(req, res, next);
+    } else {
+      next();
+    }
+  }
+}
+
+/**
+ * Authenticate the user
+ * */
 exports.verifyUser = () => {
   return (req, res, next) => {
     const email = req.body.email;
@@ -98,6 +118,17 @@ exports.verifyUser = () => {
   };
 };
 
+/**
+ * Sign token on signup
+ */
+exports.signToken = (id) => {
+  return jwt.sign(
+    { id },
+    config.secrets.jwt,
+    { expiresIn: config.expireTime }
+  );
+};
+
 // exports.getSignedInUserData = () => {
 //   return (req, res) => {
 //     User.findById(req.user.id)
@@ -129,12 +160,3 @@ exports.verifyUser = () => {
 //       });
 //   };
 // };
-
-// Sign token on signup
-exports.signToken = (id) => {
-  return jwt.sign(
-    { id },
-    config.secrets.jwt,
-    { expiresIn: config.expireTime }
-  );
-};
