@@ -28,11 +28,25 @@ exports.addToCart = (req, res) => {
     return res.status(403).send({ error: 'Not authorized.' });
   }
 
-  CartItem.create({
-    user_id: req.user.id,
-    product_id: req.body.id,
-  }).then(data => res.json(data))
-    .catch(err => res.status(400).send({ error: err.message }));
+  CartItem.findAll({
+    where: {
+      user_id: req.user.id,
+      product_id: req.body.id,
+    },
+  })
+  .then((result) => {
+    if (result.length > 0) {
+      return res.status(400).send('Already in the cart.');
+    } else {
+      CartItem.create({
+        user_id: req.user.id,
+        product_id: req.body.id,
+      })
+      .then(data => res.json(data))
+      .catch(err => res.status(400).send({ error: err.message }));
+    }
+  })
+  .catch(error => res.status(400).send({ error: error.message }));
 };
 
 exports.removeItemFromCart = (req, res) => {
