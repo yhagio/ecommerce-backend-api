@@ -14,7 +14,7 @@
 
 #### Work in progress / future
 * [X] Mailgun notification (Reset password)
-* [ ] Add a review of a product user purchased
+* [X] Add / Delete a review of a product user purchased
 * [ ] Search products
 * [ ] Limit/Skip fetch products, reviews, receipts
 * [ ] Show category of each product
