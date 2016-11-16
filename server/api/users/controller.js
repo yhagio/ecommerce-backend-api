@@ -118,30 +118,25 @@ exports.getSingleUser = (req, res) => {
           });
 
           return res.json({
+            id: user.id,
             first_name: user.first_name,
             last_name: user.last_name,
-            photo_url: user.photo_url,
-            address: user.address,
-            phone: user.phone,
             email: user.email,
             purchasedProductIds,
           });
         }
-        return res.status(403).send('No purcahsed product!');
+        
+        return res.json({
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+        });
       })
       .catch((err) => {
         // console.log('<><><><><><>ERROR RECEIPT: \n\n', err);
         return res.status(400).send({ error: err.message });
       });
-
-      // return res.json({
-      //   first_name: user.first_name,
-      //   last_name: user.last_name,
-      //   photo_url: user.photo_url,
-      //   address: user.address,
-      //   phone: user.phone,
-      //   email: user.email,
-      // });
     })
     .catch((err) => {
       // console.log('getSignedInUserData err!', err);
@@ -165,9 +160,6 @@ exports.updateUser = (req, res) => {
           return res.json({
             first_name: updatedUser.first_name,
             last_name: updatedUser.last_name,
-            photo_url: updatedUser.photo_url,
-            address: updatedUser.address,
-            phone: updatedUser.phone,
             email: updatedUser.email,
           });
         })

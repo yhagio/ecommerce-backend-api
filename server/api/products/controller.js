@@ -13,75 +13,79 @@ exports.getAllProducts = (req, res) => {
 
 /** Retrieve single product information
  *  Check if user purchased this if logged-in
- *  WIP: with corresponding reviews
+ *  with corresponding reviews
  */
 exports.getSingleProduct = (req, res) => {
   // console.log('\n\n USER ===>', req.user);
   // console.log('\n\n getSingleProduct \n\n', req.params.id);
-  Product.findById(req.params.id)
-    .then((product) => {
-      // console.log(' ++++ ++++ ++++ ', product)
-      // console.log('User: ', req.user.id)
-      // If logged-in, check if the user purchased this product
-      // return the product with additional field (purchased: true)
-      // Also, attach product's reviews
-      Review.findAll({
+  const getProductInfo = Product.findById(req.params.id);
+
+  const getProductReviews = getProductInfo.then((product) => {
+    return Review.findAll({
+      where: {
+        product_id: product.id,
+      },
+    });
+  });
+
+  Promise.all([
+    getProductInfo,
+    getProductReviews,
+  ])
+  .then((result) => {
+    // console.log('###### Product #\n\n', result[0]);
+    // console.log('###### Reviews #\n\n', result[1][0]);
+    const product = result[0];
+    const reviews = result[1];
+
+    const productWithReviews = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      reviews, // Additional field
+    };
+
+    // If user is logged-in, check if the user purchased this product
+    // and if purchased this, add a field "purchased: true"
+    // In client, it can displays the product review form if the user
+    // purchased the product.
+    if (req.user && req.user.id) {
+      Receipt.findAll({
         where: {
           product_id: product.id,
+          user_id: req.user.id,
         },
       })
-      .then((reviews) => {
-        // console.log('===== REVIEWS ====\n\n', reviews);
-        const productWithReviews = {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          description: product.description,
-          reviews, // Add new field!
-        };
-
-        if (req.user && req.user.id) {
-          Receipt.findAll({
-            where: {
-              product_id: product.id,
-              user_id: req.user.id,
-            },
-          })
-          .then((receipts) => {
-            // console.log('\n===RECEIPTS\n', receipts);
-            if (receipts[0] && receipts[0].user_id) {
-              const productWithReviewsPurchased = Object.assign(productWithReviews, { purchased: true });
-              return res.json(productWithReviewsPurchased);
-              // return res.json({
-              //   id: product.id,
-              //   name: product.name,
-              //   price: product.price,
-              //   description: product.description,
-              //   purchased: true, // Add new field!
-              // });
-            } else {
-              return res.json(productWithReviews);
+      .then((receipts) => {
+        // console.log('\n===RECEIPTS\n', req.user);
+        if (receipts[0] && receipts[0].user_id) {
+          const productWithReviewsPurchased = Object.assign(
+            productWithReviews, { 
+              purchased: true,
+              authedId: req.user.id,
             }
-          })
-          .catch((error) => {
-            console.log('----Product Receipt error!---\n', error);
-            return res.status(400).send("Couldn't verify that you purchased it.");
-          });
-        // If user does not purchase this, just return product
+          );
+          return res.json(productWithReviewsPurchased);
         } else {
-          console.log('----Product + Reviews ONLY !---\n');
           return res.json(productWithReviews);
         }
       })
-      .catch((reviewErr) => {
-        console.log('----Reviews ERROR !---\n', reviewErr);
-        return res.status(400).send('Could not get the reviews.');
+      .catch((error) => {
+        // console.log('----Product Receipt error!---\n', error);
+        return res.status(400).send("Couldn't verify that you purchased it.");
       });
-    })
-    .catch((err) => {
-      console.log('\n<<<Product fetching err>>\n', err);
-      return res.status(400).send('Could not get the product infomation.');
-    });
+    // If user is not logged-in
+    // just return product with reviews
+    } else {
+      // console.log('----Product + Reviews ONLY !---\n');
+      return res.json(productWithReviews);
+    }
+  })
+  .catch((err) => {
+    // console.log('$$$$ ERR $$$\n\n', err);
+    return res.status(400).send('Could not get the product infomation.');
+  });
 };
 
 /** Verify that the user purchased the product
@@ -109,16 +113,43 @@ exports.getSinglePurchasedProductInfo = (req, res) => {
   })
   .catch((err) => {
     // console.log('<><><><><><>ERROR RECEIPT: \n\n', err);
-    return res.status(400).send(err.message);
+    return res.status(400).send('Could not retrieve receipts.');
   });
 };
 
 exports.submitReview = (req, res) => {
-  console.log('REVIEW USER====>\n', req.user)
-  console.log('REVIEW BODY====>\n', req.body)
-}
+  Review.findAll({
+    where: {
+      product_id: req.params.id,
+      user_id: req.user.id,
+    },
+  })
+  .then((reviews) => {
+    // console.log("********\n\n", reviews);
+    if (reviews && reviews[0]) {
+      return res.status(403).send('Already wrote a review before.');
+    } else {
+      Review.create({
+        user_id: req.user.id,
+        product_id: req.params.id,
+        body: req.body.body,
+        rating: parseInt(req.body.rating, 10),
+      })
+      .then((result) => {
+        // console.log('== Successfully saved review \n\n', result);
+        return res.json(result);
+      })
+      .catch((error) => {
+        return res.status(400).send('Could not save your review.');
+      });
+    }
+  })
+  .catch((err) => {
+    return res.status(400).send('Could not submit your review.');
+  });
+};
 
 exports.deleteReview = (req, res) => {
   console.log('REVIEW USER====>\n', req.user)
   console.log('REVIEW BODY====>\n', req.body)
-}
+};
