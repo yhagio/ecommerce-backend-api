@@ -150,6 +150,18 @@ exports.submitReview = (req, res) => {
 };
 
 exports.deleteReview = (req, res) => {
-  console.log('REVIEW USER====>\n', req.user)
-  console.log('REVIEW BODY====>\n', req.body)
+  // console.log('REVIEW USER====>\n', req.user);
+  Review.destroy({
+    where: {
+      product_id: req.params.id,
+      user_id: req.user.id,
+    },
+  })
+  .then(() => {
+    // console.log("********\n\n", reviews);
+    return res.status(200).send('Successfully deleted your review.');
+  })
+  .catch((err) => {
+    return res.status(400).send('Could not delete your review.');
+  });
 };
