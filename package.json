@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "E-Commerce Backend API",
   "main": "index.js",
+  "engines": {
+    "node": "6.6.0",
+    "npm": "3.10.8"
+  },
   "scripts": {
     "lint": "eslint index.js ; exit 0",
     "restart": "psql -c 'DROP DATABASE postpg' && createdb postpg & npm run start",
