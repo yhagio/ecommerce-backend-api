@@ -8,16 +8,14 @@
 * [X] ONLY Admin can add/update/delete product 
 * [X] Mailgun notification (Reset password)
 * [X] Add / Delete a review of a product user purchased
-
-#### Stripe integration
 * [X] User can purchase a product 
 * [X] User has access to the purchased product
 * [X] Retrieve user's receipts
+* [X] Deploy (Heroku)
 
 #### Work in progress / future
 * [ ] Unit Testing
 * [ ] Redis
-* [ ] Deploy
 
 #### In future
 * [ ] Docker
@@ -32,6 +30,24 @@
 
 #### Resource
 - [Sequelize](http://docs.sequelizejs.com/en/v3/)
+
+
+```
+psql -l
+psql -d postpg -c "SELECT * FROM products"
+```
+
+#### To create database
+```
+psql -c "DROP DATABASE postpg"
+createdb postpg
+```
+To check
+```
+psql
+\l
+```
+Reference: https://www.postgresql.org/docs/9.1/static/app-createdb.html
 
 To start
 ```

@@ -1,39 +1,49 @@
+### Simple ECommerce Back-End API 
+
+Used:
+
+* Node.js
+* Express
+* JSON Web Token
+* Stripe 
+* Mailgun
+* PostgreSQL
+* Sequelize
+
+### Front-End demo
+
+Front-End demo URL: https://github.com/yhagio/ecommerce-front
 
 
+### Start locally
+
+Clone and install the dependencies
 ```
 git clone git@github.com:yhagio/ecommerce-backend-api.git ec
 cd ec
 npm i -g yarn
 yarn
 ```
-
-#### Postgres Installation
+Install Postgres (MAC)
 ```
 brew update
 brew install postgres
+createdb postpg
 ```
 
-### Start locally
 ```
+export ADMIN_FNAME=YOUR_FIRST_NAME
+export ADMIN_LNAME=YOUR_LAST_NAME
+export ADMIN_EMAIL=YOUR_EMAIL
+export ADMIN_PASSWORD=YOUR_PASSWORD
+export STRIPE_API_KEY=YOUR_TEST_STRIPE_KEY
+export MAILGUN_API_KEY=YOUR_SECRET_KEY
+export MAILGUN_DOMAIN=YOUR_DOMAIN
 npm run start
 ```
 
-```
-psql -l
-psql -d postpg -c "SELECT * FROM products"
-```
 
-#### To create database
-```
-createdb your_db_name
-```
-To check
-```
-psql
-\l
-```
-Reference: https://www.postgresql.org/docs/9.1/static/app-createdb.html
-
+## API endpoints
 
 | APIs | VERB | Parameters | Description |
 | --- | --- | --- | --- |
@@ -42,6 +52,9 @@ Reference: https://www.postgresql.org/docs/9.1/static/app-createdb.html
 | /auth/userdata | GET | none | Profile Data |
 | /api/products | GET | None | List of products |
 | /api/products/:product_id | GET | (product_id) | A product |
+| /api/products/:product_id/purchased | GET | (product_id) | Purchased Product content |
+| /api/products/:product_id/reviews | POST | (body, rating) | Add a review to a product |
+| /api/products/:product_id/reviews | DELETE | (none) | Delete a review from a product |
 | /api/admin/products/ | POST | (name, price, description) | Create product |
 | /api/admin/products/:product_id | PUT / DELETE | (product_id) | Update or delete product |
 | /api/products/:product_id | POST | (product_id) | Add product to cart |
