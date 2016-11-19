@@ -6,6 +6,8 @@
 * [X] PUT update product + Validation
 * [X] DELETE product
 * [X] ONLY Admin can add/update/delete product 
+* [X] Mailgun notification (Reset password)
+* [X] Add / Delete a review of a product user purchased
 
 #### Stripe integration
 * [X] User can purchase a product 
@@ -13,8 +15,13 @@
 * [X] Retrieve user's receipts
 
 #### Work in progress / future
-* [X] Mailgun notification (Reset password)
-* [X] Add / Delete a review of a product user purchased
+* [ ] Unit Testing
+* [ ] Redis
+* [ ] Deploy
+
+#### In future
+* [ ] Docker
+* [ ] E2E Testing
 * [ ] Search products
 * [ ] Limit/Skip fetch products, reviews, receipts
 * [ ] Show category of each product
@@ -22,11 +29,6 @@
 * [ ] Mailgun notification (Signup confirmation) 
   * Resource: https://www.quora.com/How-can-you-send-a-password-email-verification-link-using-NodeJS-1
 * [ ] Refund
-* [ ] Unit Testing
-* [ ] E2E Testing?
-* [ ] Docker
-* [ ] Redis
-* [ ] Deploy
 
 #### Resource
 - [Sequelize](http://docs.sequelizejs.com/en/v3/)
@@ -45,6 +47,7 @@ npm run start
 ```
 
 DB Design
+
 http://stackoverflow.com/questions/8865272/designing-a-rudimentary-shopping-cart-database
 https://www.princeton.edu/~rcurtis/ultradev/ecommdatabase2.html
 
